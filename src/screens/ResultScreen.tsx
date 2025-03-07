@@ -10,8 +10,8 @@ const ResultScreen = ({ route, navigation }: any) => {
       <Text style={styles.score}>
         Your Score: {score} / {total}
       </Text>
-      <Button title="Play Again" onPress={() => navigation.navigate('Quiz')} />
-      <Button title="Go Home" onPress={() => navigation.navigate('Home')} />
+      <Button title="Play Again" onPress={() => navigation.navigate('QuesTypeScreen')} />
+      <Button title="Go Home" onPress={() => navigation.navigate('HomeScreen')} />
     </View>
   );
 };
