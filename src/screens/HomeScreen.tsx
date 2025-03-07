@@ -11,27 +11,26 @@ import {
 import { AntDesign } from '@expo/vector-icons'; 
 
 const HomeScreen = ({ navigation }: any) => {
-  const rotateAnim = useRef(new Animated.Value(0)).current; // Initial animation value
+  const rotateAnim = useRef(new Animated.Value(0)).current; 
 
   const handlePress = () => {
-    // Start rotation animation
     Animated.timing(rotateAnim, {
-      toValue: 1, // Rotate fully before navigating
-      duration: 600, // Animation duration in milliseconds
-      easing: Easing.out(Easing.ease), // Smooth easing effect
-      useNativeDriver: true, // Optimizes performance
+      toValue: 1, 
+      duration: 600, 
+      easing: Easing.out(Easing.ease), 
+      useNativeDriver: true, 
     }).start(() => {
-      navigation.navigate('QuesTypeScreen'); // Navigate after animation ends
+      navigation.navigate('QuesTypeScreen'); 
     });
   };
 
-  // Interpolating the rotation value
+ 
   const rotateStyle = {
     transform: [
       {
         rotateZ: rotateAnim.interpolate({
           inputRange: [0, 1],
-          outputRange: ['0deg', '360deg'], // Full rotation effect
+          outputRange: ['0deg', '360deg'], 
         }),
       },
     ],
@@ -46,7 +45,7 @@ const HomeScreen = ({ navigation }: any) => {
 
       <TouchableOpacity 
         style={styles.floatingButton} 
-        onPress={handlePress} // Trigger animation on press
+        onPress={handlePress} 
       >
         <AntDesign name="arrowright" size={30} color="white" />
       </TouchableOpacity>

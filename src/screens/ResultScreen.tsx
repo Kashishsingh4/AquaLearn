@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-const ResultScreen: React.FC = ({ navigation }: any) => {
+const ResultScreen: React.FC = ({ route,navigation }: any) => {
+  const { score, total } = route.params;
   const handlePlayAgain = () => {
     navigation.navigate("QuesTypeScreen");
   };
@@ -37,18 +38,12 @@ const ResultScreen: React.FC = ({ navigation }: any) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.mainContent}>
-        {/* Content Container */}
         <View style={styles.contentContainer}>
-          {/* Header */}
           <Text style={styles.headerText}>MISSION DONE!!</Text>
-
-          {/* Score */}
           <View style={styles.scoreContainer}>
             <Text style={styles.scoreLabel}>YOUR SCORE</Text>
-            <Text style={styles.scoreValue}>0/3</Text>
+            <Text style={styles.scoreValue}>{score}/{total}</Text>
           </View>
-
-          {/* Buttons */}
           <ActionButton text="PLAY AGAIN" icon={require("../assets/playAgain.png")} onPress={handlePlayAgain} />
           <ActionButton text="GO HOME" icon={require("../assets/goHome.png")} onPress={handleGoHome} />
         </View>
@@ -60,7 +55,7 @@ const ResultScreen: React.FC = ({ navigation }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#B3E5FC", // Light blue background
+    backgroundColor: "#B3E5FC", 
   },
   mainContent: {
     flex: 1,
