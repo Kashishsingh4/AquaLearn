@@ -1,10 +1,44 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useRef } from 'react';
+import { 
+  View, 
+  Text, 
+  Image, 
+  StyleSheet, 
+  TouchableOpacity, 
+  Animated, 
+  Easing 
+} from 'react-native';
 import { AntDesign } from '@expo/vector-icons'; 
 
 const HomeScreen = ({ navigation }: any) => {
+  const rotateAnim = useRef(new Animated.Value(0)).current; // Initial animation value
+
+  const handlePress = () => {
+    // Start rotation animation
+    Animated.timing(rotateAnim, {
+      toValue: 1, // Rotate fully before navigating
+      duration: 600, // Animation duration in milliseconds
+      easing: Easing.out(Easing.ease), // Smooth easing effect
+      useNativeDriver: true, // Optimizes performance
+    }).start(() => {
+      navigation.navigate('QuesTypeScreen'); // Navigate after animation ends
+    });
+  };
+
+  // Interpolating the rotation value
+  const rotateStyle = {
+    transform: [
+      {
+        rotateZ: rotateAnim.interpolate({
+          inputRange: [0, 1],
+          outputRange: ['0deg', '360deg'], // Full rotation effect
+        }),
+      },
+    ],
+  };
+
   return (
-    <View style={styles.container}>
+    <Animated.View style={[styles.container, rotateStyle]}>
       <Text style={styles.title}>Welcome to</Text>
       <Text style={styles.title1}>AquaLearn</Text>
       <Image source={require('../assets/logo.png')} style={styles.logo} />
@@ -12,11 +46,11 @@ const HomeScreen = ({ navigation }: any) => {
 
       <TouchableOpacity 
         style={styles.floatingButton} 
-        onPress={() => navigation.navigate('QuesTypeScreen')}
+        onPress={handlePress} // Trigger animation on press
       >
         <AntDesign name="arrowright" size={30} color="white" />
       </TouchableOpacity>
-    </View>
+    </Animated.View>
   );
 };
 
