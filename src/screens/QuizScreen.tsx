@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator } from 'rea
 import Svg, { Circle } from 'react-native-svg';
 
 const QuizScreen = ({ route, navigation }: any) => {
-  const { type } = route.params; 
+  const { type } = route.params;
   const [questions, setQuestions] = useState<any[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
@@ -16,7 +16,7 @@ const QuizScreen = ({ route, navigation }: any) => {
 
   const fetchQuestions = async () => {
     try {
-      const response = await fetch(`http://192.168.96.242:5000/questions?type=${type}`);
+      const response = await fetch(`http://10.0.2.2:5000/questions?type=${type}`);
       const data = await response.json();
       setQuestions(data);
       setLoading(false);
@@ -67,15 +67,15 @@ const QuizScreen = ({ route, navigation }: any) => {
 
   return (
     <View style={styles.container}>
-       <View style={styles.bubbles1}>
-              <Svg height="100%" width="100%">
-                <Circle cx="30" cy="50" r="15" fill="white" opacity="0.5" />
-                <Circle cx="100" cy="150" r="10" fill="white" opacity="0.5" />
-                <Circle cx="250" cy="80" r="8" fill="white" opacity="0.5" />
-                <Circle cx="320" cy="200" r="12" fill="white" opacity="0.5" />
-              </Svg>
-            </View>
-      
+      <View style={styles.bubbles1}>
+        <Svg height="100%" width="100%">
+          <Circle cx="30" cy="50" r="15" fill="white" opacity="0.5" />
+          <Circle cx="100" cy="150" r="10" fill="white" opacity="0.5" />
+          <Circle cx="250" cy="80" r="8" fill="white" opacity="0.5" />
+          <Circle cx="320" cy="200" r="12" fill="white" opacity="0.5" />
+        </Svg>
+      </View>
+
       <Text style={styles.question}>{currentQuestion.question}</Text>
 
 
@@ -105,13 +105,13 @@ const QuizScreen = ({ route, navigation }: any) => {
         Question {currentQuestionIndex + 1} of {questions.length}
       </Text>
       <View style={styles.bubbles2}>
-  <Svg height="100%" width="100%">
-    <Circle cx="50" cy="80" r="15" fill="white" opacity="0.5" />
-    <Circle cx="150" cy="50" r="10" fill="white" opacity="0.5" />
-    <Circle cx="250" cy="90" r="8" fill="white" opacity="0.5" />
-    <Circle cx="350" cy="60" r="12" fill="white" opacity="0.5" />
-  </Svg>
-</View>
+        <Svg height="100%" width="100%">
+          <Circle cx="50" cy="80" r="15" fill="white" opacity="0.5" />
+          <Circle cx="150" cy="50" r="10" fill="white" opacity="0.5" />
+          <Circle cx="250" cy="90" r="8" fill="white" opacity="0.5" />
+          <Circle cx="350" cy="60" r="12" fill="white" opacity="0.5" />
+        </Svg>
+      </View>
     </View>
   );
 };
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: 20,
-    backgroundColor: '#B3E5FC', 
+    backgroundColor: '#B3E5FC',
   },
   roundText: {
     fontSize: 24,
@@ -132,9 +132,9 @@ const styles = StyleSheet.create({
     fontFamily: 'monospace',
   },
   question: {
-    fontSize: 20,
+    fontSize: 19,
     fontWeight: 'bold',
-    color: '#006064',
+    color: "black",
     textAlign: 'center',
     marginBottom: 20,
     fontFamily: 'monospace',
@@ -169,13 +169,13 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   optionText: {
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: 'bold',
     color: '#006064',
     fontFamily: 'monospace',
   },
   correct: {
-    backgroundColor: 'green',
+    backgroundColor: 'lightgreen',
   },
   wrong: {
     backgroundColor: 'red',
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
     fontWeight: 'bold',
-    color: '#006064',
+    color: 'black',
   },
   bubbles1: {
     position: 'absolute',
@@ -199,9 +199,9 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: '20%', 
+    height: '20%',
   },
-  
+
 });
 
 export default QuizScreen;

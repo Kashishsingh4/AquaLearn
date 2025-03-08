@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -6,10 +6,12 @@ import {
   StyleSheet,
   SafeAreaView,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 
-const ResultScreen: React.FC = ({ route,navigation }: any) => {
+const ResultScreen: React.FC = ({ route, navigation }: any) => {
   const { score, total } = route.params;
+
   const handlePlayAgain = () => {
     navigation.navigate("QuesTypeScreen");
   };
@@ -18,6 +20,7 @@ const ResultScreen: React.FC = ({ route,navigation }: any) => {
     navigation.navigate("HomeScreen");
   };
 
+  
   const ActionButton = ({
     text,
     icon,
@@ -47,10 +50,16 @@ const ResultScreen: React.FC = ({ route,navigation }: any) => {
           <ActionButton text="PLAY AGAIN" icon={require("../assets/playAgain.png")} onPress={handlePlayAgain} />
           <ActionButton text="GO HOME" icon={require("../assets/goHome.png")} onPress={handleGoHome} />
         </View>
+        <TouchableOpacity style={styles.feedbackButton}>
+          <Text style={styles.feedbackButtonText}>GET FEEDBACK</Text>
+        </TouchableOpacity>
+        <Image source={require('../assets/wave.png')} style={styles.waterImage} />
       </View>
     </SafeAreaView>
   );
 };
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -103,7 +112,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     backgroundColor: "white",
-    padding: 15,
+    padding: 10,
     borderRadius: 12,
     marginVertical: 10,
     width: 180,
@@ -123,6 +132,31 @@ const styles = StyleSheet.create({
     height: 24,
     resizeMode: "contain",
     marginLeft: 10,
+  },
+  feedbackButton: {
+    backgroundColor: "#0047AB",
+    padding: 15,
+    borderRadius: 12,
+    marginTop: 20,
+    width: 200,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  feedbackButtonText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "white",
+  },
+  waterImage: {
+    position: 'absolute',
+    bottom: 0,
+    width: '110%',
+    height: '22%',
+    resizeMode: 'cover',
   },
 });
 
