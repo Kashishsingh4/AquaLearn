@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   waterImage: {
     position: 'absolute',
     bottom: 0,
-    width: '100%',
+    width: '98%',
     height: '28%',
     resizeMode: 'cover',
   },

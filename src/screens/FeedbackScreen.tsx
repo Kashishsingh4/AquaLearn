@@ -22,7 +22,7 @@ const FeedbackScreen: React.FC = ({ route, navigation }: any) => {
         const percentage = (score / total) * 100;
         if (percentage >= 80) return "Excellent! You have great knowledge about water conservation and sanitation.";
         if (percentage >= 50) return "Good job! Keep learning about water sustainability and sanitation.";
-        return "You can do better! Learn more about water conservation and sanitation to improve.";
+        return "You can do better!.Retry the quiz if you want to. Learn more about water conservation and sanitation to improve.";
     };
 
     return (
