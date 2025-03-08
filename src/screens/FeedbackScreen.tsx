@@ -20,9 +20,9 @@ const FeedbackScreen: React.FC = ({ route, navigation }: any) => {
 
     const getFeedbackMessage = () => {
         const percentage = (score / total) * 100;
-        if (percentage >= 80) return "Excellent! You have great knowledge about water conservation.";
-        if (percentage >= 50) return "Good job! Keep learning about water sustainability.";
-        return "You can do better! Learn more about water conservation to improve.";
+        if (percentage >= 80) return "Excellent! You have great knowledge about water conservation and sanitation.";
+        if (percentage >= 50) return "Good job! Keep learning about water sustainability and sanitation.";
+        return "You can do better! Learn more about water conservation and sanitation to improve.";
     };
 
     return (
