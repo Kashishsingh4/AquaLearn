@@ -87,7 +87,14 @@ and display below in the result screen
           <ActionButton text="GO HOME" icon={require("../assets/goHome.png")} onPress={handleGoHome} />
         </View>
         <TouchableOpacity style={styles.feedbackButton}>
-          <Text style={styles.feedbackButtonText}>GET FEEDBACK</Text>
+          <Text style={styles.feedbackButtonText}
+          onPress={
+            () => {
+              navigation.navigate('Feedback')
+            }
+          }
+          >GET FEEDBACK</Text>
+          
         </TouchableOpacity>
         <Image source={require('../assets/wave.png')} style={styles.waterImage} />
       </View>

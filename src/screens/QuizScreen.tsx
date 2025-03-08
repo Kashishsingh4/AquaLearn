@@ -16,7 +16,7 @@ const QuizScreen = ({ route, navigation }: any) => {
 
   const fetchQuestions = async () => {
     try {
-      const response = await fetch(`http://10.0.2.2:5000/questions?type=${type}`);
+      const response = await fetch(`http://192.168.137.1:5000/questions?type=${type}`);
       // for shagnik
       //const response = await fetch(`http://192.168.137.1:5000/questions?type=${type}`);
       const data = await response.json();
@@ -64,7 +64,7 @@ const QuizScreen = ({ route, navigation }: any) => {
           total: questions.length,
         });
       }
-    }, 1000);
+    }, 10);
   };
 
   return (
