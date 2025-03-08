@@ -37,8 +37,8 @@ export default function FeedBackScreen ({ route, navigation }: any) {
     
     
     
-    const [value, onChangeText] = useState('Useless Multiline Placeholder');
-    const [bodyText, setBodyText] = useState("NO GEMINI 😭😭😭😭😭");
+    const [value, onChangeText] = useState('');
+    const [bodyText, setBodyText] = useState("Type something to ask the chatbot");
     return (
         <SafeAreaProvider>
     <SafeAreaView style={styles.container} edges={['top']}>
@@ -48,6 +48,7 @@ export default function FeedBackScreen ({ route, navigation }: any) {
         
         <TextInput
           editable
+          placeholder='Type something'
           multiline
           numberOfLines={4}
           maxLength={40}
