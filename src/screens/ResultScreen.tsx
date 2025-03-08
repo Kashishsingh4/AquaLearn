@@ -9,43 +9,7 @@ import {
   Alert,
 } from "react-native";
 
-
-
-
-
 const ResultScreen: React.FC = ({ route, navigation }: any) => {
-
-
-
-  /*
-
-  Like in Quiz screen add here 
-
-  useEffect(() => {
-      getAIText();
-    }, []);
-
-
-  then create a state
-
-  const [aiText, setaiText] = useState("Analyzing your results please wait....");
-  
-  
-  now create an async function getAIText()
-
-inside this call the api url ussing  fetch function 
-
-and get the response 
-and call setaiText(response.data)
-and display below in the result screen
-  {
-  
-}
-
-
-*/
-
-
   const { score, total } = route.params;
 
   const handlePlayAgain = () => {
@@ -86,9 +50,12 @@ and display below in the result screen
           <ActionButton text="PLAY AGAIN" icon={require("../assets/playAgain.png")} onPress={handlePlayAgain} />
           <ActionButton text="GO HOME" icon={require("../assets/goHome.png")} onPress={handleGoHome} />
         </View>
-        <TouchableOpacity style={styles.feedbackButton}>
-          <Text style={styles.feedbackButtonText}>GET FEEDBACK</Text>
-        </TouchableOpacity>
+        <TouchableOpacity 
+  style={styles.feedbackButton} 
+  onPress={() => navigation.navigate("Feedback", { score, total })}
+>
+  <Text style={styles.feedbackButtonText}>GET FEEDBACK</Text>
+</TouchableOpacity>
         <Image source={require('../assets/wave.png')} style={styles.waterImage} />
       </View>
     </SafeAreaView>
