@@ -1,4 +1,6 @@
-import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
+import { View, Text, StyleSheet,ScrollView, TextInput, Button } from 'react-native';
+import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
+
 import { useEffect, useState } from 'react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
@@ -16,15 +18,15 @@ export default function FeedBackScreen ({ route, navigation }: any) {
     const prompt = `${question} keep the response within 200 words`;
     
     
-    useEffect(() => {
-        console.log("FETCH API");
-        setQuestion("Hello Bro")
-        const s = model.generateContent(prompt).then((r) => {
-            console.log(r.response.text());
+    // useEffect(() => {
+    //     console.log("FETCH API");
+    //     setQuestion("Hello Bro")
+    //     const s = model.generateContent(prompt).then((r) => {
+    //         console.log(r.response.text());
             
-        })
-        console.log('fetch',s)
-    }, [])
+    //     })
+    //     console.log('fetch',s)
+    // }, [])
     
     
     
@@ -38,19 +40,12 @@ export default function FeedBackScreen ({ route, navigation }: any) {
     const [value, onChangeText] = useState('Useless Multiline Placeholder');
     const [bodyText, setBodyText] = useState("NO GEMINI 😭😭😭😭😭");
     return (
-    <View style={styles.container}>
-        <Button
-            onPress={() => {
-                setQuestion(value)
-                 const s = model.generateContent(prompt).then((r) => {
-                    setBodyText(r.response.text())
-                 })
-                 console.log(s)
-            }}
-            title="Ask"
-            color="#841584"
-            accessibilityLabel="Learn more about this purple button"
-/>
+        <SafeAreaProvider>
+    <SafeAreaView style={styles.container} edges={['top']}>
+
+   
+    <ScrollView style={styles.container}>
+        
         <TextInput
           editable
           multiline
@@ -63,15 +58,32 @@ export default function FeedBackScreen ({ route, navigation }: any) {
         <Text style={styles.baseText}>
           <Text numberOfLines={5}>{bodyText}</Text>
         </Text>
-    </View>
+        <Button
+            onPress={() => {
+                console.log('question is',(value + "keep the response within 200 words"));
+                
+                setQuestion(value + "keep the response within 200 words")
+                 const s = model.generateContent(question).then((r) => {
+                    setBodyText(r.response.text())
+                 })
+                 console.log(s)
+            }}
+            title="Ask"
+            color="#841584"
+            accessibilityLabel="Learn more about this purple button"
+/>
+    </ScrollView>
+    </SafeAreaView>
+  </SafeAreaProvider>
   );
 }
 
 const styles = StyleSheet.create({
+    scrollView: {
+        backgroundColor: 'pink',
+      },
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    
     borderBottomColor: '#000',
     borderBottomWidth: 1,
   },
