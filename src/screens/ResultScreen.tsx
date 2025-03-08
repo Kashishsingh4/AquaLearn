@@ -9,7 +9,43 @@ import {
   Alert,
 } from "react-native";
 
+
+
+
+
 const ResultScreen: React.FC = ({ route, navigation }: any) => {
+
+
+
+  /*
+
+  Like in Quiz screen add here 
+
+  useEffect(() => {
+      getAIText();
+    }, []);
+
+
+  then create a state
+
+  const [aiText, setaiText] = useState("Analyzing your results please wait....");
+  
+  
+  now create an async function getAIText()
+
+inside this call the api url ussing  fetch function 
+
+and get the response 
+and call setaiText(response.data)
+and display below in the result screen
+  {
+  
+}
+
+
+*/
+
+
   const { score, total } = route.params;
 
   const handlePlayAgain = () => {
@@ -20,7 +56,7 @@ const ResultScreen: React.FC = ({ route, navigation }: any) => {
     navigation.navigate("HomeScreen");
   };
 
-  
+
   const ActionButton = ({
     text,
     icon,
@@ -64,7 +100,7 @@ const ResultScreen: React.FC = ({ route, navigation }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#B3E5FC", 
+    backgroundColor: "#B3E5FC",
   },
   mainContent: {
     flex: 1,
